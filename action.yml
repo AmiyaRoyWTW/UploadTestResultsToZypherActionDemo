@@ -17,6 +17,9 @@ inputs:
   processingType:
     description: The processing type of the test results in Zephyr Scale
     default: upload
+branding:
+  icon: 'activity'
+  color: 'blue'
 runs:
   using: node20
   main: dist/index.js
