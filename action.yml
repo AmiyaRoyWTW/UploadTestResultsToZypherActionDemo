@@ -1,0 +1,22 @@
+name: 'uploadtozypherdemo'
+description: 'Upload test results to Zephyr Scale'
+inputs:
+  resultsPath:
+    description: 'The path to the test results file along with the file name'
+    required: true
+  framework:
+    description: 'The testing framework used to generate the test results'
+    default: xunit
+  jiraUsername:
+    description: Jira Username to be used for authentication to Zephyr Scale
+  jiraPassword:
+    description: Jira Password to be used for authentication to Zephyr Scale
+  projectName:
+    description: The name of the project in Zephyr Scale
+    default: true
+  processingType:
+    description: The processing type of the test results in Zephyr Scale
+    default: upload
+runs:
+  using: node20
+  main: dist/index.js
