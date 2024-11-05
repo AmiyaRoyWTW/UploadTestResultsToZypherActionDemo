@@ -7,7 +7,7 @@ export interface IGitSourceSettings {
   /**
    * The repository owner
    */
-  framework: string
+  framework?: string
 
   /**
    * The repository name
@@ -22,11 +22,21 @@ export interface IGitSourceSettings {
   /**
    * The commit to checkout
    */
-  processingType: string
+  processingType?: string
 
   /**
    * Indicates whether to clean the repository
    */
-  projectName: string
+  projectName?: string
+
+  /**
+   * Indicates whether to clean the repository
+   */
+  folderName: string
+
+  /**
+   * Indicates whether to clean the repository
+   */
+  domainUrl: string
 
 }

@@ -8,6 +8,8 @@ export async function getInputs(): Promise<IGitSourceSettings>{
         jiraUsername: core.getInput('jiraUsername'),
         jiraPassword: core.getInput('jiraPassword'),
         processingType: core.getInput('processingType'),
-        projectName: core.getInput('projectName')
+        projectName: core.getInput('projectName'),
+        folderName: core.getInput('testType'),
+        domainUrl: core.getInput('domainUrl')
     }
 }

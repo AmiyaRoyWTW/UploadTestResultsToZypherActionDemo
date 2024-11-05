@@ -13,10 +13,13 @@ inputs:
     description: Jira Password to be used for authentication to Zephyr Scale
   projectName:
     description: The name of the project in Zephyr Scale
-    default: true
-  processingType:
-    description: The processing type of the test results in Zephyr Scale
-    default: upload
+    required: true
+  domainUrl:
+    description: The domain URL of the Jira instance
+    required: true
+  testType:
+    description: Type of automation tests. Ex- Smoke, Regression, etc.
+    default: Smoke
 branding:
   icon: 'activity'
   color: 'blue'
