@@ -11,11 +11,13 @@ async function run(): Promise<void> {
         core.info('jiraPassword: ' + settings.jiraPassword);
         core.info('processingType: ' + settings.processingType);
         core.info('projectName: ' + settings.projectName);
-        uploadResults.uploadResults(settings);
+        await uploadResults.uploadResults(settings);
         console.info('Action completed successfully');
     } catch (error) {
         core.setFailed(`${(error as any)?.message ?? error}`);
     }
-
-    run();
 }
+
+run().catch(error => {
+        core.setFailed((error as Error).message)
+    });

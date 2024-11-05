@@ -228,15 +228,17 @@ function run() {
             core.info('jiraPassword: ' + settings.jiraPassword);
             core.info('processingType: ' + settings.processingType);
             core.info('projectName: ' + settings.projectName);
-            uploadResults.uploadResults(settings);
+            yield uploadResults.uploadResults(settings);
             console.info('Action completed successfully');
         }
         catch (error) {
             core.setFailed(`${(_a = error === null || error === void 0 ? void 0 : error.message) !== null && _a !== void 0 ? _a : error}`);
         }
-        run();
     });
 }
+run().catch(error => {
+    core.setFailed(error.message);
+});
 
 
 /***/ }),
