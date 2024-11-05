@@ -69,13 +69,18 @@ const axios_1 = __importDefault(__nccwpck_require__(7269));
 function getApiClient(url, uri, settings) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            console.log(`username: ${settings.jiraUsername}, password: ${settings.jiraPassword}`);
             const response = yield axios_1.default.get(url + uri, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Basic ' + js_base64_1.default.encode(settings.jiraUsername + ':' + settings.jiraPassword),
                 }
             });
-            return response.data;
+            if (response !== undefined) {
+                return response.data;
+            }
+            else
+                throw new Error('No response found');
         }
         catch (error) {
             console.error(error);
