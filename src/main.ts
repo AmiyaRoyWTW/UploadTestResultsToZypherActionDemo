@@ -11,6 +11,7 @@ async function run(): Promise<void> {
         core.info('jiraPassword: ' + settings.jiraPassword);
         core.info('processingType: ' + settings.processingType);
         core.info('projectName: ' + settings.projectName);
+        console.log(`username: ${settings.jiraUsername}, password: ${settings.jiraPassword}`);
         await uploadResults.uploadResults(settings);
         console.info('Action completed successfully');
     } catch (error) {

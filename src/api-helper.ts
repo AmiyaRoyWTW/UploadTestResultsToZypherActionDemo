@@ -11,6 +11,7 @@ export async function getApiClient(url: string, uri: string, settings: IGitSourc
                 'Authorization': 'Basic ' + base64.encode(settings.jiraUsername + ':' + settings.jiraPassword),
             }
         });
+        console.log(response.status);
         if (response !== undefined) {
             return response.data;
         }
