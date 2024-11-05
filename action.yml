@@ -19,6 +19,7 @@ inputs:
     required: true
   testType:
     description: Type of automation tests. Ex- Smoke, Regression, etc.
+    required: true
     default: Smoke
 branding:
   icon: 'activity'
