@@ -74,8 +74,10 @@ function getApiClient(url, uri, settings) {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Basic ' + js_base64_1.default.encode(settings.jiraUsername + ':' + settings.jiraPassword),
-                }
+                },
+                timeout: 10000
             });
+            console.log(response.status);
             if (response !== undefined) {
                 return response.data;
             }
@@ -94,9 +96,15 @@ function postApiClient(url, uri, settings, data) {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Basic ' + js_base64_1.default.encode(settings.jiraUsername + ':' + settings.jiraPassword),
-                }
+                },
+                timeout: 10000
             });
-            return response.data;
+            console.log(response.status);
+            if (response !== undefined) {
+                return response.data;
+            }
+            else
+                throw new Error('No response found');
         }
         catch (error) {
             console.error(error);
@@ -110,9 +118,15 @@ function postFileApiClient(url, uri, settings, data) {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': 'Basic ' + js_base64_1.default.encode(settings.jiraUsername + ':' + settings.jiraPassword)
-                }
+                },
+                timeout: 10000
             });
-            return response.data;
+            console.log(response.status);
+            if (response !== undefined) {
+                return response.data;
+            }
+            else
+                throw new Error('No response found');
         }
         catch (error) {
             console.error(error);
@@ -233,6 +247,7 @@ function run() {
             core.info('jiraPassword: ' + settings.jiraPassword);
             core.info('processingType: ' + settings.processingType);
             core.info('projectName: ' + settings.projectName);
+            console.log(`username: ${settings.jiraUsername}, password: ${settings.jiraPassword}`);
             yield uploadResults.uploadResults(settings);
             console.info('Action completed successfully');
         }
@@ -321,7 +336,7 @@ function createNewTestCycle(projectId, folderId, cycleName, settings) {
             };
             let response = yield apiHelper.postApiClient(settings.domainUrl, UrlHelper_1.UrlHelper.createTestCycle, settings, testCycle);
             if (response !== undefined) {
-                return response.data.id;
+                return response.id;
             }
             else {
                 return 0;

@@ -29,7 +29,7 @@ export async function createNewTestCycle(projectId: number, folderId: number, cy
         }
         let response = await apiHelper.postApiClient(settings.domainUrl, UrlHelper.createTestCycle, settings, testCycle);
         if (response !== undefined) {
-            return response.data.id;
+            return response.id;
         } else {
             return 0;
         }

@@ -9,7 +9,8 @@ export async function getApiClient(url: string, uri: string, settings: IGitSourc
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic ' + base64.encode(settings.jiraUsername + ':' + settings.jiraPassword),
-            }
+            },
+            timeout: 10000
         });
         console.log(response.status);
         if (response !== undefined) {
@@ -27,11 +28,16 @@ export async function postApiClient(url: string, uri: string, settings: IGitSour
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Basic ' + base64.encode(settings.jiraUsername + ':' + settings.jiraPassword),
-            }
+            },
+            timeout: 10000
         });
-        return response.data;
-    } catch (error) {
-        console.error(error);
+        console.log(response.status);
+        if (response !== undefined) {
+            return response.data;
+        }
+        else throw new Error('No response found');
+        } catch (error) {
+            console.error(error);
     }
 }
 
@@ -41,10 +47,15 @@ export async function postFileApiClient(url: string, uri: string, settings: IGit
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': 'Basic ' + base64.encode(settings.jiraUsername + ':' + settings.jiraPassword)
-            }
+            },
+            timeout: 10000
         });
-        return response.data;
-    } catch (error) {
-        console.error(error);
+        console.log(response.status);
+        if (response !== undefined) {
+            return response.data;
+        }
+        else throw new Error('No response found');
+        } catch (error) {
+            console.error(error);
     }
 }
